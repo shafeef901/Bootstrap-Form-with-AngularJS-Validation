@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<div class="container main-content MinMaxCtrl">
+	<div class="container main-content" ng-controller="MinMaxCtrl">
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="text-center">Bizzare '18</h1>
@@ -37,11 +37,11 @@
 						<div id="name" class="form-group col-lg-6">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input id="fname" class="form-control"required="" placeholder="First Name" type="text">	
+							<input id="fname" class="form-control"required="" placeholder="First Name" type="text" ng-model="formModel.fname">	
 							</div>
 						</div>
 						<div id="name" class="form-group col-lg-6">
-							<input id="lname" class="form-control"required="" placeholder="Last Name" type="text">	
+							<input id="lname" class="form-control"required="" placeholder="Last Name" type="text" ng-model="formModel.lname">	
 						</div>					
 					</div>
 					<div class="row"> 
@@ -55,7 +55,7 @@
 						<div class="form-group col-md-12">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							<input id="email" class="form-control" required="" placeholder="example@smail.com" type="text">	
+							<input id="email" class="form-control" required="" placeholder="example@smail.com" type="text" ng-model="formModel.email">	
 							</div>
 						</div>
 					</div>
@@ -256,7 +256,7 @@
 						<div class="form-group col-md-12">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-							<input id="mob" class="form-control" required="" placeholder="" type="text">	
+							<input id="mob" class="form-control" required="" placeholder="" type="text" ng-model="formModel.mob">	
 							</div>
 						</div>
 					</div>
@@ -273,7 +273,7 @@
 						<div class="form-group col-md-12">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-							<input id="clg" class="form-control" required="" placeholder="" type="text">	
+							<input id="clg" class="form-control" required="" placeholder="" type="text" ng-model="formModel.clg">	
 							</div>
 						</div>
 					</div>
@@ -287,7 +287,7 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<select id="events" class="form-control" name="events">
+						<select id="events" class="form-control" name="events" ng-model="formMode.event">
 							<option value="1" selected="">--List of Events--</option>
 							<option value="2"> Light Music Solo</option>
 							<option value="3"> Western Music</option>
@@ -317,9 +317,11 @@
 						<input type="button" value="Submit" id="contactbtn" class="btn btn-default "/>	
 					</div>
 				</form>			
+				<pre> {{formModel | json }} </pre> 
 			</div>
 		</div>	
 	</div>
 	<script src=" https://opensource.keycdn.com/angularjs/1.6.2/angular.min.js "></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
