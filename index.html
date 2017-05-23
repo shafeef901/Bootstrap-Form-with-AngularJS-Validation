@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="minmax">
+<html lang="en" ng-app="validationApp">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,63 +15,72 @@
 
 </head>
 <body>
-	<div class="container main-content" ng-controller="MinMaxCtrl">
+	<div class="container main-content" ng-controller="mainController">
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12 jumbotron">
 				<h1 class="text-center">Bizzare '18</h1>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-6 col-lg-push-3">
-				<form >
+				<form name="userForm" ng-submit="submitForm()" novalidate>
 					<div class="row"> 
 						<div class="col-lg-12">
-						<label class="control-label " required="" for="name">
+						<label class="control-label" for="name">
 							<b>Name</b>
 						</label>
 						</div>
 					</div>
 					<div class="row">
-
-						<div id="name" class="form-group col-lg-6">
+						<div id="name" class="form-group col-lg-6" ng-class="{ 'has-error' : userForm.fname.$invalid && !userForm.fname.$pristine }">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input id="fname" class="form-control"required="" placeholder="First Name" type="text" ng-model="formModel.fname">	
-							</div>
+							<input type="text" name="fname" class="form-control" ng-model="user.fname" required placeholder="First Name">
+              </div>
+            <p ng-show="userForm.fname.$invalid && !userForm.fname.$pristine" class="help-block">You name is required.</p>
 						</div>
-						<div id="name" class="form-group col-lg-6">
-							<input id="lname" class="form-control"required="" placeholder="Last Name" type="text" ng-model="formModel.lname">	
+
+
+						<div id="name" class="form-group col-lg-6" ng-class="{ 'has-error' : userForm.lname.$invalid && !userForm.lname.$pristine }">
+							<input name="lname" class="form-control" placeholder="Last Name" type="text" ng-model="user.name" required>	
+              <p ng-show="userForm.lname.$invalid && !userForm.lname.$pristine" class="help-block">You name is required.</p>
 						</div>					
 					</div>
+
+
 					<div class="row"> 
 						<div class="col-lg-12">
-						<label class="control-label" required="" for="email">
+						<label class="control-label" for="email">
 							<b>E-mail</b>
 						</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							<input id="email" class="form-control" required="" placeholder="example@smail.com" type="text" ng-model="formModel.email">	
-							</div>
+							<input type="email" name="email" class="form-control" ng-model="user.email" ng-required="true">
+            </div>
+            <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>	
 						</div>
 					</div>
+
+
 					<div class="row"> 
 						<div class="col-lg-12">
-						<label class="control-label" required="" for="dob">
+						<label class="control-label" for="dob">
 							<b>Date of Birth</b>
 						</label>
 						</div>
 					</div>
 					
+
           			<div class="row">
-          				<div class="col-lg-4">
+          				<div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.day.$invalid && !userForm.day.$pristine && userForm.day.$touched }">
           							<br>
-          							<select class="form-control" name="day" id="date">
-              							<option value="0" selected="">Date</option>
+          							<select class="form-control" name="day" id="date" ng-model="user.day" required="true">
+              							<option value="0" selected="" disabled>Date</option>
              							<option value="1">1</option>
                							<option value="2">2</option>
                							<option value="3">3</option>
@@ -104,11 +113,14 @@
                 						<option value="30">30</option>
                 						<option value="31">31</option>
                 					</select>
-                		</div>
-                		<div class="col-lg-4">
+                        <p ng-show="userForm.day.$invalid && !userForm.day.$pristine && userForm.day.$touched" class="help-block">Please choose a date.</p> 
+                	</div>
+                
+
+                <div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.month.$invalid && !userForm.month.$pristine && userForm.month.$touched }">
                 		<br>
-              <select class="form-control" name="month" id="month">
-                <option value="0" selected="">Month</option>
+              <select class="form-control" name="month" id="month" ng-model="user.month" required="true">
+                <option value="0" disabled selected="">Month</option>
                 <option value="1">Janaury</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -122,11 +134,14 @@
                 <option value="11">November</option>
                 <option value="12">December</option>
               </select>
+              <p ng-show="userForm.month.$invalid && !userForm.month.$pristine && userForm.month.$touched" class="help-block">Please choose a month.</p> 
             </div>
-                		<div class="col-lg-4">
+                	
+
+                  	<div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.year.$invalid && !userForm.year.$pristine && userForm.year.$touched }">
                 			<br>
-                			<select id="year" class="form-control" name="year">
-                <option value="0" selected="">Year</option>
+                			<select id="year" class="form-control" name="year" ng-model="user.year" required="true">
+                <option value="0" disabled selected="">Year</option>
                 <option value="2007">2007</option>
               	<option value="2006">2006</option>
               	<option value="2005">2005</option>
@@ -215,80 +230,59 @@
               	<option value="1922">1922</option>
               	<option value="1921">1921</option>
               	<option value="1920">1920</option>
-              	<option value="1919">1919</option>
-              	<option value="1918">1918</option>
-              	<option value="1917">1917</option>
-              	<option value="1916">1916</option>
-              	<option value="1915">1915</option>
-              	<option value="1914">1914</option>
-              	<option value="1913">1913</option>
-              	<option value="1912">1912</option>
-              	<option value="1911">1911</option>
-              	<option value="1910">1910</option>
-              	<option value="1909">1909</option>
-              	<option value="1908">1908</option>
-              	<option value="1907">1907</option>
-              	<option value="1906">1906</option>
-              	<option value="1905">1905</option>
-              	<option value="1904">1904</option>
-              	<option value="1903">1903</option>
-              	<option value="1902">1902</option>
-              	<option value="1901">1901</option>
-              	<option value="1900">1900</option>
                  </select>
-
-
+                 <p ng-show="userForm.year.$invalid && !userForm.year.$pristine && userForm.year.$touched" class="help-block">Please choose a year.</p> 
               	</div>
-
             </div>
+            <br>
 
 
-
-            	<br>
 					<div class="row"> 
 						<div class="col-lg-12">
-						<label class="control-label" required="" for="mob">
+						  <label class="control-label" for="mob">
 							<b>Phone Number</b>
-						</label>
+						  </label>
 						<div class="col-lg-12">
 					</div>
 					<div class="row">
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.mob.$invalid && !userForm.mob.$pristine }">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-							<input id="mob" class="form-control" required="" placeholder="" type="text" ng-model="formModel.mob">	
+							<input id="mob" class="form-control" placeholder="" type="text" name="mob" ng-model="user.mob" ng-pattern="/^[7-9][0-9]{9}$/" required>	
 							</div>
+              <p ng-show="userForm.mob.$invalid && !userForm.mob.$pristine" class="help-block">Enter a valid Indian mobile number.</p>
 						</div>
 					</div>
 
 
 					<div class="row"> 
 						<div class="col-lg-12">
-						<label class="control-label" required="" for="clg">
+						<label class="control-label" for="clg">
 							<b>Name of your Institution/College</b>
 						</label>
 						</div>
 					</div>
 					<div class="row">
-						<div class="form-group col-md-12">
+						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.clg.$invalid && !userForm.clg.$pristine }">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-							<input id="clg" class="form-control" required="" placeholder="" type="text" ng-model="formModel.clg">	
+							<input id="clg" class="form-control" placeholder="" type="text" name="clg" ng-model="user.clg" required>
 							</div>
+              <p ng-show="userForm.clg.$invalid && !userForm.clg.$pristine" class="help-block">College name is required.</p>
 						</div>
 					</div>
 
 
 					<div class="row"> 
 						<div class="col-lg-12">
-						<label class="control-label" required="" for="clg">
+						<label class="control-label" for="clg">
 							<b>Which event are you interested in?</b>
 						</label>
 						</div>
 					</div>
-					<div class="col-md-12">
-						<select id="events" class="form-control" name="events" ng-model="formMode.event">
-							<option value="1" selected="">--List of Events--</option>
+					<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.events.$invalid && !userForm.events.$pristine && userForm.events.$touched }">
+						<select id="events" class="form-control" name="events" ng-model="user.events">
+							<option value="1" disabled selected="">--List of Events--</option>
 							<option value="2"> Light Music Solo</option>
 							<option value="3"> Western Music</option>
 							<option value="4"> Duet Dance</option>
@@ -299,25 +293,26 @@
 							<option value="9"> Slam Poetry</option>
 							<option value="10"> Doodle Making Competition</option>
 						</select>
+            <p ng-show="userForm.events.$invalid && !userForm.events.$pristine && userForm.events.$touched" class="help-block">Please choose an event.</p> 
 					</div>
 
 
 					<div class="row">
 						<div class="col-lg-12">
 						<br>
-						<label class="control-label" for="pic">
-							Upload Your Photograph
-						</label>
+						  <label class="control-label" for="pic">
+							 Upload Your Photograph
+						  </label>
 						</div>
 					</div>
-						<div class="form-group">
-            			<input id="pic" accept="image/*" required="" placeholder="Browse" type="file">
-            			</div>
-            		<div class="form-group" style="text-align: center">
+					<div class="form-group">
+            <input id="pic" accept="image/*" placeholder="Browse" type="file">
+          </div>
+            <div class="form-group" style="text-align: center">
 						<input type="button" value="Submit" id="contactbtn" class="btn btn-default "/>	
-					</div>
-				</form>			
-				<pre> {{formModel | json }} </pre> 
+					 </div>
+				  </form>			
+				<pre> {{ userForm | json }} </pre> 
 			</div>
 		</div>	
 	</div>
