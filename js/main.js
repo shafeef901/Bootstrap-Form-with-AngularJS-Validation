@@ -11,7 +11,11 @@ validationApp.controller('mainController', function($scope) {
 		if ($scope.userForm.$valid) {
 				alert('Form is successfully submitted');
 			}
+		else{
+				alert('Please fill out the form properly and completely!')
+		}
 
 		};
+
 
 	});

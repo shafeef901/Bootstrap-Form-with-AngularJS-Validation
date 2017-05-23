@@ -12,6 +12,11 @@
 
 	<title>Form</title>
 	<link rel="shortcut icon" href="img/mypict.ico" type="image/png">
+  <style>
+    body{
+      background: url('img/background.jpg');
+    }
+  </style>
 
 </head>
 <body>
@@ -19,12 +24,15 @@
 		<div class="row">
 			<div class="col-lg-12 jumbotron">
 				<h1 class="text-center">Bizzare '18</h1>
+          <h3 class="text-center">Be a Star!</h3>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-6 col-lg-push-3">
 				<form name="userForm" ng-submit="submitForm()" novalidate>
+
+<!--Name label and input tags-->
 					<div class="row"> 
 						<div class="col-lg-12">
 						<label class="control-label" for="name">
@@ -33,22 +41,32 @@
 						</div>
 					</div>
 					<div class="row">
-						<div id="name" class="form-group col-lg-6" ng-class="{ 'has-error' : userForm.fname.$invalid && !userForm.fname.$pristine }">
+						<div id="name" class="form-group col-lg-6" ng-class="{ 'has-error' : userForm.fname.$invalid && !userForm.fname.$pristine, 'has-success' : !userForm.fname.$invalid }">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input type="text" name="fname" class="form-control" ng-model="user.fname" required placeholder="First Name">
+							<input type="text" 
+                     name="fname" 
+                     class="form-control" 
+                     ng-model="user.fname" 
+                     required 
+                     placeholder="First Name">
               </div>
-            <p ng-show="userForm.fname.$invalid && !userForm.fname.$pristine" class="help-block">You name is required.</p>
+            <p ng-show="userForm.fname.$invalid && !userForm.fname.$pristine" class="help-block">Your first name is required.</p>
 						</div>
 
 
-						<div id="name" class="form-group col-lg-6" ng-class="{ 'has-error' : userForm.lname.$invalid && !userForm.lname.$pristine }">
-							<input name="lname" class="form-control" placeholder="Last Name" type="text" ng-model="user.name" required>	
-              <p ng-show="userForm.lname.$invalid && !userForm.lname.$pristine" class="help-block">You name is required.</p>
+						<div id="name" class="form-group col-lg-6" ng-class="{ 'has-error' : userForm.lname.$invalid && !userForm.lname.$pristine, 'has-success' : !userForm.lname.$invalid}">
+							<input name="lname" 
+                     class="form-control" 
+                     placeholder="Last Name" 
+                     type="text" 
+                     ng-model="user.name" 
+                     required>	
+              <p ng-show="userForm.lname.$invalid && !userForm.lname.$pristine" class="help-block">Your last name is required.</p>
 						</div>					
 					</div>
 
-
+<!--E-mail label and input tags-->
 					<div class="row"> 
 						<div class="col-lg-12">
 						<label class="control-label" for="email">
@@ -57,16 +75,20 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine, 'has-success' : !userForm.email.$invalid }">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							<input type="email" name="email" class="form-control" ng-model="user.email" ng-required="true">
+							<input type="email" 
+                     name="email" 
+                     class="form-control" 
+                     ng-model="user.email" 
+                     ng-required="true">
             </div>
             <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>	
 						</div>
 					</div>
 
-
+<!--DOB label and select tags-->
 					<div class="row"> 
 						<div class="col-lg-12">
 						<label class="control-label" for="dob">
@@ -74,14 +96,17 @@
 						</label>
 						</div>
 					</div>
-					
-
-          			<div class="row">
-          				<div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.day.$invalid && !userForm.day.$pristine && userForm.day.$touched }">
+          		<div class="row">
+          			<div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.day.$invalid && !userForm.day.$pristine && userForm.day.$touched, 'has-success' : !userForm.day.$invalid }">
           							<br>
-          							<select class="form-control" name="day" id="date" ng-model="user.day" required="true">
-              							<option value="0" selected="" disabled>Date</option>
-             							<option value="1">1</option>
+          				<select class="form-control" 
+                          name="day" 
+                          id="date" 
+                          ng-model="user.day" 
+                          required="true">
+
+              						  <option value="0" disabled>Date</option>
+             							  <option value="1">1</option>
                							<option value="2">2</option>
                							<option value="3">3</option>
                 						<option value="4">4</option>
@@ -117,10 +142,15 @@
                 	</div>
                 
 
-                <div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.month.$invalid && !userForm.month.$pristine && userForm.month.$touched }">
+                <div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.month.$invalid && !userForm.month.$pristine && userForm.month.$touched, 'has-success' : !userForm.month.$invalid }">
                 		<br>
-              <select class="form-control" name="month" id="month" ng-model="user.month" required="true">
-                <option value="0" disabled selected="">Month</option>
+              <select class="form-control" 
+                      name="month" 
+                      id="month" 
+                      ng-model="user.month" 
+                      required="true">
+
+                <option value="0" disabled>Month</option>
                 <option value="1">Janaury</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -138,10 +168,15 @@
             </div>
                 	
 
-                  	<div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.year.$invalid && !userForm.year.$pristine && userForm.year.$touched }">
+                  	<div class="form-group col-xs-4" ng-class="{ 'has-error' : userForm.year.$invalid && !userForm.year.$pristine && userForm.year.$touched, 'has-success' : !userForm.year.$invalid }">
                 			<br>
-                			<select id="year" class="form-control" name="year" ng-model="user.year" required="true">
-                <option value="0" disabled selected="">Year</option>
+                			<select id="year" 
+                              class="form-control" 
+                              name="year" 
+                              ng-model="user.year" 
+                              required="true">
+
+                <option value="0" disabled>Year</option>
                 <option value="2007">2007</option>
               	<option value="2006">2006</option>
               	<option value="2005">2005</option>
@@ -236,7 +271,7 @@
             </div>
             <br>
 
-
+<!--Phone No label and input tags-->
 					<div class="row"> 
 						<div class="col-lg-12">
 						  <label class="control-label" for="mob">
@@ -245,16 +280,23 @@
 						<div class="col-lg-12">
 					</div>
 					<div class="row">
-						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.mob.$invalid && !userForm.mob.$pristine }">
+						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.mob.$invalid && !userForm.mob.$pristine, 'has-success' : !userForm.mob.$invalid }">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-							<input id="mob" class="form-control" placeholder="" type="text" name="mob" ng-model="user.mob" ng-pattern="/^[7-9][0-9]{9}$/" required>	
+							<input id="mob"
+                     class="form-control" 
+                     placeholder="" 
+                     type="text" 
+                     name="mob" 
+                     ng-model="user.mob" 
+                     ng-pattern="/^[7-9][0-9]{9}$/" 
+                     required>	
 							</div>
-              <p ng-show="userForm.mob.$invalid && !userForm.mob.$pristine" class="help-block">Enter a valid Indian mobile number.</p>
+              <p ng-show="userForm.mob.$invalid && !userForm.mob.$pristine" class="help-block">Enter a valid Indian 10-digit mobile number.</p>
 						</div>
 					</div>
 
-
+<!--College Name label and input tags-->
 					<div class="row"> 
 						<div class="col-lg-12">
 						<label class="control-label" for="clg">
@@ -263,16 +305,22 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.clg.$invalid && !userForm.clg.$pristine }">
+						<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.clg.$invalid && !userForm.clg.$pristine, 'has-success' : !userForm.clg.$invalid }">
 							<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-							<input id="clg" class="form-control" placeholder="" type="text" name="clg" ng-model="user.clg" required>
+							<input id="clg" 
+                     class="form-control"
+                    placeholder="" 
+                    type="text" 
+                    name="clg" 
+                    ng-model="user.clg" 
+                    required>
 							</div>
               <p ng-show="userForm.clg.$invalid && !userForm.clg.$pristine" class="help-block">College name is required.</p>
 						</div>
 					</div>
 
-
+<!--Event label and select tags-->
 					<div class="row"> 
 						<div class="col-lg-12">
 						<label class="control-label" for="clg">
@@ -280,9 +328,9 @@
 						</label>
 						</div>
 					</div>
-					<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.events.$invalid && !userForm.events.$pristine && userForm.events.$touched }">
+					<div class="form-group col-md-12" ng-class="{ 'has-error' : userForm.events.$invalid && !userForm.events.$pristine && userForm.events.$touched, 'has-success' : !userForm.events.$invalid }">
 						<select id="events" class="form-control" name="events" ng-model="user.events">
-							<option value="1" disabled selected="">--List of Events--</option>
+							<option value="1" disabled>--List of Events--</option>
 							<option value="2"> Light Music Solo</option>
 							<option value="3"> Western Music</option>
 							<option value="4"> Duet Dance</option>
@@ -306,13 +354,13 @@
 						</div>
 					</div>
 					<div class="form-group">
-            <input id="pic" accept="image/*" placeholder="Browse" type="file">
+            <input id="pic" accept="image/*" placeholder="Browse" type="file" name="pic" ng-model="user.pic">
           </div>
+          <p ng-show="userForm.pic.$invalid && !userForm.pic.$pristine && userForm.pic.$touched" class="help-block">Please choose an event.</p>
             <div class="form-group" style="text-align: center">
-						<input type="button" value="Submit" id="contactbtn" class="btn btn-default "/>	
+						<button type="submit" class="btn btn-default "> Submit </button> 	
 					 </div>
 				  </form>			
-				<pre> {{ userForm | json }} </pre> 
 			</div>
 		</div>	
 	</div>
